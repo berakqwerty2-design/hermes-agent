@@ -63,7 +63,6 @@ RUN npm install --prefer-offline --no-audit && \
     (cd ui-tui && npm install --prefer-offline --no-audit) && \
     npm cache clean --force
 
-# Install Claude Code
 RUN npm install -g @anthropic-ai/claude-code
 
 COPY pyproject.toml uv.lock ./
@@ -99,7 +98,6 @@ COPY --chmod=0755 docker/cont-init.d/02-reconcile-profiles /etc/cont-init.d/02-r
 ENV HERMES_WEB_DIST=/opt/hermes/hermes_cli/web_dist
 ENV HERMES_HOME=/opt/data
 
-# Claude Code env vars — ANTHROPIC_AUTH_TOKEN set di Railway Variables
 ENV ANTHROPIC_BASE_URL=https://all-api.ccode.dev
 ENV CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
 
@@ -108,5 +106,5 @@ COPY --chmod=0755 docker/hermes-exec-shim.sh /opt/hermes/bin/hermes
 ENV PATH="/opt/hermes/bin:/opt/hermes/.venv/bin:/opt/data/.local/bin:${PATH}"
 RUN mkdir -p /opt/data
 
-ENTRYPOINT [ "/init", "/opt/hermes/docker/main-wrapper.sh" ]
-CMD [ ]
+ENTRYPOINT [ "/init" ]
+CMD [ "/opt/hermes/docker/main-wrapper.sh", "gateway", "run" ]
