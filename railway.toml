@@ -1,2 +1,8 @@
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
 [deploy]
-startCommand = ""
+startCommand = "/init /opt/hermes/docker/main-wrapper.sh"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
