@@ -3,6 +3,6 @@ builder = "DOCKERFILE"
 dockerfilePath = "Dockerfile"
 
 [deploy]
-startCommand = "hermes gateway run --no-tty"
+startCommand = "hermes gateway run < /dev/null"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 3
