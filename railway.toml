@@ -3,6 +3,6 @@ builder = "DOCKERFILE"
 dockerfilePath = "Dockerfile"
 
 [deploy]
-startCommand = "hermes dashboard --port 8642 --host 0.0.0.0"
+startCommand = "hermes dashboard --port 8642 --host 0.0.0.0 --insecure"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 3
